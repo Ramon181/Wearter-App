@@ -1,0 +1,19 @@
+.bot{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1px;
+    border-top:1px solid var(--primary-color);
+}
+.a{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 10px;
+}
+@media (max-width: 750px){
+    .bot{
+        font-size: 60px;
+    }
+}

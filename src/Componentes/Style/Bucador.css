@@ -1,0 +1,31 @@
+.onSearch{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-top: 23px;
+}
+.input{
+    font-size: 20px;
+    width: 150px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid var(--primary-color);
+}
+.btn{
+    font-size: 20px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.boton{
+    margin-top:5px;
+    margin-left: -30px;
+}
+@media (max-width: 750px){
+    .onSearch{
+       margin-bottom: 20px;
+    }
+}
+@media (max-width: 405px){
+}

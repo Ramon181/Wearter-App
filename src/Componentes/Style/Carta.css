@@ -1,0 +1,57 @@
+.Carta{
+    display: flex;
+    flex-direction: column;
+    width: 18rem;
+    align-items: center;
+    border:1px solid var(--primary-color);
+    border-radius: 3px;
+    margin: 10px;
+}
+.Carta:hover{
+    background-color: transparent;
+}
+.Btn{
+    display: flex;
+    background-color: white;
+    border:1px solid var(--primary-color);
+    border-radius: 2px;
+    margin: 5px;
+    align-self: flex-end;
+}
+.link{
+    text-decoration: none;
+    color: var(--primary-color);
+}
+.divuno{
+    margin-top: -50px;
+}
+
+.otro{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.Name{
+    display: flex;
+    flex-direction:unset;
+    font-size: 20px;
+    font-weight: bold;
+}
+.mane2{
+    margin: 3px;
+}
+.divdos{
+    display: flex;
+    flex-direction: row;
+}
+.clima{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -15px;
+    background-color: rgba(58, 58, 58, 0.288);
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
