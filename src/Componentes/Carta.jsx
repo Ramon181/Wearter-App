@@ -6,7 +6,7 @@ export default function Carta({ name, max, min, img, onClose, id }) {
     return (
         <div className="Carta">
             <button onClick={onClose} className='Btn' >X</button>
-            <Link to={`/ciudad/${id}`} className='link'>
+            <Link to={`/ciudad/${name}`} className='link'>
                 <div className="divuno">
                     <h2>{name}</h2>
                 </div>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Cartas from './Componentes/Cartas';
 import NavBar from './Componentes/NavBar';
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NavAbout from './Componentes/NavAbout';
 import Ciudad from './Componentes/Ciudad';
 import './App.css'
 import AboutMe from './Componentes/AboutMe';
+import SideBar from './Componentes/SideBar';
+import Home from './Componentes/Home';
 // import { Icon } from '@iconify/react';
 
 
@@ -45,14 +47,6 @@ function App() {
         }
       });
   }
-  function onFilter(ciudadId) {
-    let ciudad = cities.filter(c => c.id === parseInt(ciudadId));
-    if (ciudad.length > 0) {
-      return ciudad[0];
-    } else {
-      return null;
-    }
-  }
 
   useEffect(() => {
     document
@@ -74,34 +68,13 @@ function App() {
     <div className="app">
       <header className="App-header">
         <div>
-          <Route path={'/'}>
-            <NavBar onSearch={onSearch} />
-            <div>
-              <label class="switch">
-                <input
-
-                  type="checkbox"
-                  defaultChecked={checked}
-                  onChange={toggleThemeChange} />
-                <span className="slider"></span>
-              </label>
-            </div>
-          </Route>
-        </div>
-        <div>
-          <Route exact path={'/ciudad/:ciudadId'} render={({ match }) =>
-            <Ciudad city={onFilter(match.params.ciudadId)} />
-          }>
-          </Route>
-          <Route exact path={'/'}>
-            <Cartas onClose={onClose} cities={cities} />
-          </Route>
-        </div>
-        <Route exact path={'/about-me'}>
-          <AboutMe />
-        </Route>
-        <div className='we'>
-         <NavAbout />
+          <NavBar onSearch={onSearch} cities={cities} checked={checked} toggleThemeChange={toggleThemeChange} />
+          <SideBar/>
+          <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path="/ciudad/:name" element={<Ciudad/>} />
+            <Route path={'/about-me'} element={<AboutMe />} />
+          </Routes>
         </div>
       </header>
     </div>

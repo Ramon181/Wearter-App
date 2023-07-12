@@ -1,37 +1,26 @@
-html{
+html {
   --primary-color: #000000;
   --secondary-color: #eef0f5;
 }
 html[data-theme="dark"] {
-  --primary-color: #CCD0D5;
+  --primary-color: #ccd0d5;
   --secondary-color: #1c1d1f;
 }
 
-.app{
-    align-items: center;
+.app {
+  align-items: center;
 }
 .App-header {
-    background-color: var(--secondary-color);
-    min-height: 100vh;
-    flex-direction: column;
-    font-size: calc(5px + 2vmin);
-    color: var(--primary-color);
-  }
-  
-.App-link {
-    color: #61dafb;
-  }
-.leaflet-container {
-    width: 80vw;
-    height: 60vh;
-    margin-left: 30px;
-    margin-right: 5px;
-    margin-top: 50px;
-    border-radius: 5px;
-    border: 1px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  font-size: calc(5px + 2vmin);
+  color: var(--primary-color);
 }
 .switch {
-  position: fixed;
+  z-index: 35;
+  position: absolute;
   top: 20px;
   right: 5px;
   display: inline-block;
@@ -52,8 +41,8 @@ html[data-theme="dark"] {
   bottom: 0;
   border-radius: 34px;
   background-color: var(--primary-color);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 .slider:before {
   position: absolute;
@@ -63,29 +52,20 @@ html[data-theme="dark"] {
   left: 4px;
   bottom: 4px;
   border-radius: 50%;
-  background-color: var(--secondary-color);;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: var(--secondary-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-.we{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-
-}
-@media (max-width: 750px){
-
+@media (max-width: 750px) {
   .leaflet-container {
     width: 80vw;
     height: 40vh;
     margin-left: 5px;
     margin-top: 0;
-
-}
+  }
 }

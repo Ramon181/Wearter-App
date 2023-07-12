@@ -1,8 +1,12 @@
 .Nav{
+    position: fixed;
+    top: 0;
+    left: 110px;
+    right: 0;
     display: flex;
+    z-index: 30;
     justify-content: space-between;
-    border-bottom: 1px solid var(--primary-color);
-    margin-left: 0px;
+    width: 100%;
 }
 .nav-link{
     display: flex;
