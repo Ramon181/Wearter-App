@@ -6,8 +6,6 @@ import Home from './Componentes/Home';
 import Carta from './Componentes/Carta';
 import Recient from './Componentes/Recient';
 
-
-const apiKey = '4ae2636d8dfbdc3044bede63951a019b';
 function App() {
 
   const [cities, setCities] = useState([]);
@@ -31,7 +29,7 @@ function App() {
   }
   const onSearch = async (e) => {
     e.preventDefault();
-    await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}`)
+    await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=4ae2636d8dfbdc3044bede63951a019b`)
       .then(r => r.json())
       .then((recurso) => {
         if (recurso.main !== undefined) {
@@ -58,7 +56,6 @@ function App() {
         }
       });
   }
-  console.log(cities)
 
   return (
     <div className="app">
