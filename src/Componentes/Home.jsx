@@ -1,50 +1,52 @@
-import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Popup,
+  Marker,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { blackIcon } from "./assets/icono";
 import "./Style/home.css";
-const Home = () => {
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+import { useEffect } from "react";
 
-  const generateRandomLocation = () => {
-    const minLat = -90;
-    const maxLat = 90;
-    const minLng = -180;
-    const maxLng = 180;
-
-    const randomLat = Math.random() * (maxLat - minLat) + minLat;
-    const randomLng = Math.random() * (maxLng - minLng) + minLng;
-
-    setLatitude(randomLat);
-    setLongitude(randomLng);
-  };
+const Home = ({ city, geoLoading, setLoading }) => {
   useEffect(() => {
-    generateRandomLocation();
+    setLoading()
   }, []);
-
-  console.log(latitude);
-
-  return (
+  return !geoLoading ? (
     <div className="home-body">
-      {latitude && longitude ? (
+      <span class="loader"></span>
+    </div>
+  ) : (
+    <div className="home-body">
+      {city.longitud && city.latitud ? (
         <div>
-          <MapContainer center={{ lon: -77.4297, lat: 20.9881 }} zoom={13}>
+          <MapContainer
+            center={[city.latitud, city.longitud]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {/* <Marker
-              position={{ lon: -77.4297, lat: 20.9881 }}
-              icon={blackIcon}
-            >
+            <Marker position={[city.latitud, city.longitud]} icon={blackIcon}>
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
-            </Marker> */}
+            </Marker>
           </MapContainer>
         </div>
-      ) : null}
+      ) : (
+        <div>
+          <MapContainer center={[20.9881, -77.4297]} zoom={13}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </MapContainer>
+        </div>
+      )}
     </div>
   );
 };

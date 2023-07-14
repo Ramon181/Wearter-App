@@ -1,30 +1,15 @@
 import "./Style/sideBar.css";
-const SideBar = () => {
+const SideBar = ({setOpenRecient}) => {
   return (
     <nav className="side_bar">
       <div className="main_side">
-        <a href="#first">
+        <button className="button" onClick={() => {
+          setOpenRecient(true)
+        }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="28"
-            height="28"
-            viewBox="0 0 14 14"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m11 13.5l-4-4l-4 4v-12a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Z"
-            />
-          </svg>
-          <h4>Guardados</h4>
-        </a>
-        <a href="#second">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="30"
+            height="30"
             viewBox="0 0 24 24"
           >
             <path
@@ -33,7 +18,7 @@ const SideBar = () => {
             />
           </svg>
           <h4>Recientes</h4>
-        </a>
+        </button>
       </div>
     </nav>
   );

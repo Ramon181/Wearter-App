@@ -1,19 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Style/Bucador.css";
-import { Icon } from "@iconify/react";
 
-export default function Buscador() {
+export default function Buscador({ onSearch, search, setSearch }) {
+  const [countries, setCountries] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
+
+  const fetchCountries = async () => {
+    const response = await fetch("https://restcountries.com/v2/all");
+    const data = await response.json();
+    setCountries(data);
+  };
+
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  const onClick = s => {
+    setSearch(s);
+    setSuggestions([]);
+  };
+  const onchange = e => {
+    let matches = [];
+    if (e.length > 0) {
+      matches = countries.filter(country => {
+        const regex = new RegExp(`${e}`, "gi");
+        return country.name.match(regex);
+      });
+    }
+    setSuggestions(matches);
+    setSearch(e);
+  };
+
+  const sugg = suggestions.slice(0, 5);
+
   return (
-    <form onsubmit="event.preventDefault();" role="search">
+    <form onSubmit={e => onSearch(e)} role="search">
       <label for="search">Search for stuff</label>
       <input
+        value={search}
+        onChange={e => onchange(e.target.value)}
         id="search"
         type="search"
         placeholder="Buscar..."
         autofocus
         required
       />
-      <button type="submit">
+      <button className="button_search" type="submit">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -26,6 +58,15 @@ export default function Buscador() {
           />
         </svg>
       </button>
+      <div className="suggestions">
+        {sugg &&
+          sugg.map((e, i) => (
+            <div onClick={() => onClick(e.name)} className="suger" key={i}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g transform="rotate(90 12 12)"><path fill="currentColor" d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19zm9-12.243L19.092 17H4.908L12 6.757z"/></g></svg>
+              <h4>{e.name}</h4>
+            </div>
+          ))}
+      </div>
     </form>
   );
 }
